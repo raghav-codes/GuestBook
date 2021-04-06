@@ -1,17 +1,17 @@
 package com.example.guestBook;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
+//import static com.sun.org.apache.xalan.internal.xsltc.dom.LoadDocument.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
+@AutoConfigureRestDocs
 class GuestBookApplicationTests {
 
 	@Autowired
@@ -39,8 +40,11 @@ class GuestBookApplicationTests {
 		mockMvc.perform(get("/guests"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length()").value(0));
-				//.andExpect(jsonPath("[0].name").value(""))
-				//.andExpect(jsonPath("[0].comment").value(""));
+//				.andDo(document("Guests"), responseFields(
+//						fieldWithPath("[0].guestName").description("Zxander"),
+//						fieldWithPath("[0].guestComment").description("Test")
+
+
 	}
 
 
