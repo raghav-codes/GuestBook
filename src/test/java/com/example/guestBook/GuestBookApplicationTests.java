@@ -11,6 +11,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import javax.transaction.Transactional;
 
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+
 //import static com.sun.org.apache.xalan.internal.xsltc.dom.LoadDocument.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -42,7 +46,7 @@ class GuestBookApplicationTests {
 				.andExpect(jsonPath("length()").value(0));
 //				.andDo(document("Guests"), responseFields(
 //						fieldWithPath("[0].guestName").description("Zxander"),
-//						fieldWithPath("[0].guestComment").description("Test")
+//						fieldWithPath("[0].guestComment").description("Test")));
 
 
 	}
