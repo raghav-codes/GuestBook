@@ -1,0 +1,16 @@
+Guests
+
+.request
+include::{snippets}/Guests/http-request.adoc[]
+
+.response
+include::{snippets}/Guests/http-response.adoc[]
+
+
+AddGuests
+
+.request
+include::{snippets}/AddGuests/http-request.adoc[]
+
+.response
+include::{snippets}/AddGuests/http-response.adoc[]

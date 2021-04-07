@@ -15,7 +15,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWit
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 
-//import static com.sun.org.apache.xalan.internal.xsltc.dom.LoadDocument.document;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -44,9 +44,8 @@ class GuestBookApplicationTests {
 		mockMvc.perform(get("/guests"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length()").value(0));
-//				.andDo(document("Guests"), responseFields(
-//						fieldWithPath("[0].guestName").description("Zxander"),
-//						fieldWithPath("[0].guestComment").description("Test")));
+
+
 
 
 	}
@@ -59,13 +58,17 @@ class GuestBookApplicationTests {
 			mockMvc.perform(post("/guests")
 					.content(objectMapper.writeValueAsString(guestDto1))
 					.contentType(MediaType.APPLICATION_JSON))
-					.andExpect(status().isCreated());
+					.andExpect(status().isCreated())
+					.andDo(document("AddGuests"));
 
-			mockMvc.perform(get("/guests"))
+							mockMvc.perform(get("/guests"))
 					.andExpect(status().isOk())
 					.andExpect(jsonPath("length()").value(1))
 					.andExpect(jsonPath("[0].guestName").value("Zxander"))
-					.andExpect(jsonPath("[0].guestComment").value("Test"));
+					.andExpect(jsonPath("[0].guestComment").value("Test"))
+					.andDo(document("Guests", responseFields(
+							fieldWithPath("[0].guestName").description("Zxander"),
+							fieldWithPath("[0].guestComment").description("Test"))));
 
 
 	}
