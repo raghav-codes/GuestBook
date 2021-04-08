@@ -50,8 +50,6 @@ class GuestBookApplicationTests {
 
 	}
 
-
-
 	@Test
 	void postGuestTest( ) throws Exception {
 			GuestDto guestDto1 = new GuestDto("Zxander","Test");
